@@ -2,14 +2,36 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/models/Autoload.php';
 
-//loading one instance of twig with as parameter the folder path of the corresponding view (the path is written inside of the constante)  
-$twig = TwigInstance::twigLoad(TwigInstance::HOME);
-  
+//we create an instance of Routes class and recover the Sections.
+$routing =  new Routes();
+$paths = $routing->getSections();
 
-// we are calling the view and fix its parameters
-    echo $twig->render('index.twig',
-    array
-    (
-        'motor_name' => '"A value in Twig"'
-    ));
+
+//check if section don't exist
+if (!isset($_GET['section']))
+{
+    $page = new HomeController;
+    return $page->indexAction();
+}
+
+/*($path come from routing.php)
+manage to the controller*/
+switch($_GET['section'])
+{     
+    case $paths['home']:
+        $page = new HomeController;
+        return $page->indexAction();
+    break;
+
+    case $paths['blog']:
+        $page = new BlogController;
+        return $page->indexAction();
+    break;
+
+    case $paths['blogadd']:
+        $page = new BlogController;
+        return $page->indexAction();
+    break;
+}
 ?>
+

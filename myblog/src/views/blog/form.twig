@@ -1,0 +1,39 @@
+<br/>{#bad design temporary for test #}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form action="" method="post">
+  <p>
+    
+    {# faire apparaitre l'id de la news en mode hidden pour la récuperer pour le mode édit #}
+    
+    {# mettre des verifications html du contenu avant le send #}
+    <label>Votre titre</label>
+    <input type="text" name="title" value="" /><br />
+    {# if var.tile is defined afficher la valeur pour l'édite sinon laisser vide #}
+    <label>Votre chapô</label>
+    <input type="text" name="catchphrase" value="" /><br />
+      
+    <label>votre texte</label>
+    <textarea name="content" rows="7" cols="50"></textarea><br />
+    
+    <label>Ecrit par</label>
+    <input type="text" name="author" value="" /><br />
+    
+    <input type="submit" value="Valider" />
+      
+    {# afficher les valeurs visibles en mode edit avec une condition #}
+      
+  </p>
+</form>

@@ -11,7 +11,6 @@ class HomeController extends Controller
     {
         // we are calling the view and fix its parameters
         echo self::twigCall()->render('index.twig',
-        array('motor_name' => '"A value in Twig"',
-              'urls' => self::urls()/*function Brought by Routing Trait wich is called in the mother class*/));
+        array('urls' => self::urls()/*function Brought by Routing Trait wich is called in the mother class*/));
     }
 }

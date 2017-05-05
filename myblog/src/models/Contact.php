@@ -6,13 +6,13 @@ class Contact
     private $_errors = [],
             $_name,
             $_firstname,
-            $_mail,
+            $_email,
             $_message;
 
     //constants
     const   INVALIDE_NAME = 1,
             INVALIDE_FIRSTNAME = 2,
-            INVALIDE_MAIL = 3,
+            INVALIDE_EMAIL = 3,
             INVALIDE_MESSAGE = 4;
         
 
@@ -44,7 +44,7 @@ class Contact
     //method to know if the post is valide
     public function isValid()
     {
-        return !(empty($this->_name) || empty($this->_firstname) || empty($this->_mail) || empty($this->_message));
+        return !(empty($this->_name) || empty($this->_firstname) || empty($this->_email) || empty($this->_message));
     }
 
     
@@ -56,7 +56,7 @@ class Contact
 
     public function firstname(){return $this->_firstname;}
 
-    public function mail(){return $this->_mail;}
+    public function email(){return $this->_email;}
 
     public function message(){return $this->_message;}
 
@@ -86,15 +86,15 @@ class Contact
         }
     }
 
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        if (!is_string($mail) || empty($mail) || !preg_match('`^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$`', $mail))
+        if (!is_string($email) || empty($email) || !preg_match('`^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$`', $email))
         {
-            $this->_errors[] = self::INVALIDE_MAIL;
+            $this->_errors[] = self::INVALIDE_EMAIL;
         }
         else
         {
-            $this->_mail = $mail;
+            $this->_email = $email;
         }
     }
 

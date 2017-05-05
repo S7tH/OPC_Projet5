@@ -23,7 +23,7 @@
                     <a class="page-scroll" href="{{ urls.blogadd }}">Nouveau post</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#">About</a>
+                    <a class="page-scroll" href="#"></a>
                 </li>
             </ul>
         </div>
@@ -46,7 +46,7 @@
 
 {% block header %}
 
-{% if section == "blogadd" %}
+{% if section == "blogadd" or section == "blogedit"  %}
 
 {% include 'form.twig' %}
 
@@ -66,34 +66,30 @@
 <br/>
 <br/>
 <br/>
-    <p style="text-align: center">Il y a actuellement {{ postcount }} post(s). En voici la liste :</p>
-    
     <table>
       <tr><th>Titre</th><th>accroche</th><th>Contenu</th><th>Auteur</th><th>Dernière modification</th><th>lien</th></tr>
-        
-        {% for c in content %}
         <tr>
             <td>
-                {{ c.post_title }}
+                {{ contentpost.post_title }} 
             </td>
             <td>
-                {{ c.post_catchphrase }}
+                {{ contentpost.post_catchphrase }}
             </td>
             <td>
-                {{ c.post_content }}
+                {{ contentpost.post_content }}
             </td>
             <td>
-                {{ c.autheur_name }}
+                {{ contentpost.author_name }}
             </td>
             <td>
-                {{ c.post_modified }}
+                le {{ contentpost.post_modified | date('d/m/Y à H:i:s') }}
             </td>
             
             <td>
-               <a href="{# edit #}">éditer le post</a> 
+               <a href="{{ urls.blogedit }}{{ post_id }}">éditer le post</a> {# direct to the url of the post in specifying its post_id for edit it #}
             </td>
         </tr>
-        {% endfor %}
+       
     </table>
     
 {% else %}
@@ -123,7 +119,7 @@
                 {{ p.post_title }}
             </td>
             <td>
-                {{ p.post_modified }}
+               le {{ p.post_modified | date('d/m/Y à H:i:s') }}
             </td>
             <td>
                 {{ p.post_catchphrase }}

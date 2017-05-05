@@ -8,13 +8,13 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Welcome to my blog</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Welcome to my network</a>
             </div>
     <!-- Collect the nav anchorlinks, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#">Présentation</a>
+                    <a class="page-scroll" href="#page-top">Présentation</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#contact">Me contacter</a>
@@ -38,6 +38,7 @@
 
 {% block header %}
         
+    {% if mailSucces == false  %}{# if no mail has been send #}
         <div class="header-content">
             <div class="header-content-inner">
                 <br/>
@@ -75,10 +76,26 @@
 
             </div>
         </div>
-
+    {% else %}{# if a mail has been send correctly, we display a succes message #}
+        <div class="header-content">
+            <div class="header-content-inner">
+                <br/>
+        <!-- succes send mail message-->
+                <div class="col-sm-offset-2   col-sm-8">
+                    <h1 id="homeHeading">Votre demande a bien été prise en compte</h1>
+                    <hr>
+                    <p>Je tacherai de vous répondre le plus rapidement possible, bonne journée et à bientôt.</p>
+                    <a href="{{ urls.home }}" class="btn btn-primary btn-xl page-scroll hidden-xs">Retourner a l'accueil</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
+
+
 {% block page %}
+{% if mailSucces == false  %}{# if no mail has been send, that part will be hidden #}
     <!--photo xs only-->
     <aside class="bg-dark visible-xs">
         <div class="container text-center">
@@ -103,22 +120,22 @@
  
             
                 
-    <!--contact form-->       
-    <section class="bg-primary" id="about">
+    <!--contact form-->      
+    <section class="bg-primary" id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Contactez moi</h2>
                     <hr class="light">
-                    <p class="text-faded">Emplacement du formulaire de contact</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Envoyer</a>
+                    <p class="text-faded">Veuillez renseigner les champs suivant pour me contacter</p>
+                    {% include 'form.twig' %}
                 </div>
             </div>
         </div>
     </section>
 
 
-    <section id="contact">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -137,5 +154,6 @@
             </div>
         </div>
     </section>
-
+{% endif %}
 {% endblock %}
+

@@ -10,10 +10,10 @@ class BLogManager
     {
         $this->_database = $database;
     }
-
-    //method to add a post
-    public function add(Blog $post)
-    {          
+    
+    //method wich checks if the author exist in the database else it creates one
+    public function authorExist(Blog $post)
+    {
         //check if this author exists in the database
         $quest = $this->_database->prepare('SELECT * FROM my_authors WHERE author_name = :author');
         $quest->bindValue(':author', $post->author());
@@ -21,10 +21,10 @@ class BLogManager
         $exist = $quest->fetch();
         $quest->closeCursor();
         
-        if ($exist['author_name'] == $post->author())//if exists we recover the author_id in a var $id
+        if ($exist['author_name'] == $post->author())//if exists we recover the author_id in a var $id and update its foreign key with it
         {
-            $id = $exist['author_id'];
-        } 
+            return $id = $exist['author_id'];
+        }
         else//else we save it in the database
         {
             //save the author
@@ -32,9 +32,16 @@ class BLogManager
             $quest->bindValue(':name', $post->author());
             $quest->execute();
             /*recovers the author_id on a var $id with a PDO function wich recover the last id inserted*/
-            $id = $this->_database->lastInsertId(); 
             $quest->closeCursor();
+            return $id = $this->_database->lastInsertId(); 
         }
+    }
+    
+    //method to add a post
+    public function add(Blog $post)
+    {          
+        //let's Call our method for check if this author exist
+        $id = $this->authorExist($post);
         
         //save the content of the blog
         $quest = $this->_database->prepare('INSERT INTO my_posts(post_title, post_catchphrase, post_content, id_author, post_date, post_modified) VALUES(:title, :catchphrase, :content, :author, NOW(), NOW())');
@@ -52,19 +59,27 @@ class BLogManager
     {
         return $this->_database->query('SELECT COUNT(*) FROM my_posts')->fetchColumn();
     }
-
+    
+    
     //methode to update the modifications on a post
     public function update(Blog $post)
-    {
-        $quest = $this->_database->prepare('UPDATE my_posts SET post_title = :title, post_catchphrase = :catchphrase, post_content = :content, post_author = :author, post_modified = NOW() WHERE post_id = :id');
+    {   
+        //let's Call our method for check if this author exist
+        $id = $this->authorExist($post);
+        
+        $quest = $this->_database->prepare
+        ('UPDATE my_posts, my_authors
+          SET post_title = :title, post_catchphrase = :catchphrase, post_content = :content, id_author = :fk_author, post_modified = NOW()
+          WHERE post_id = :id'
+        );
     
         $quest->bindValue(':title', $post->title());
         $quest->bindValue(':catchphrase', $post->catchphrase());
         $quest->bindValue(':content', $post->content());
-        $quest->bindValue(':author', $post->author());
+        $quest->bindValue(':fk_author',(int)$id, PDO::PARAM_INT);
         $quest->bindValue(':id', $post->id(), PDO::PARAM_INT);
-    
         $quest->execute();
+        $quest->closeCursor();
     }
 
     //method for save a post
@@ -83,23 +98,19 @@ class BLogManager
     //method wich return a post per its id
     public function getPost($id)
     {
-        $id = (int)$id;
-        //make a juncture to recover author_name
         $quest = $this->_database->prepare
         (
-        'SELECT * FROM my_authors AS a
-         INNER JOIN my_posts AS p
-         ON a.author_id = p.id_author
-         WHERE p.post_id = :id'
+        'SELECT * FROM (my_authors, my_posts)
+         WHERE(my_posts.id_author = my_authors.author_id
+         AND post_id = :id)'
         );
         $quest->bindValue(':id', (int)$id, PDO::PARAM_INT);
         $quest->execute();
 
         $quest->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Blog');
 
-
         $post = $quest->fetch();
-
+        
         $post->setPost_modified(new DateTime($post->post_modified()));
 
         return $post;

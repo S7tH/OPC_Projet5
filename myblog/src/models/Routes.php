@@ -23,6 +23,6 @@ class Routes
            'blog' => $section.'blog',
            'blogpost' => $section.'blogpost'.$post,
            'blogadd' => $section.'blogadd',
-           'blogedit' => $section.'blogedit');
+           'blogedit' => $section.'blogedit'.$post);
    }
 }

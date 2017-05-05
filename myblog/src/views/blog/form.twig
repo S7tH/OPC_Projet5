@@ -13,27 +13,26 @@
 <br/>
 <br/>
 <br/>
-<form action="" method="post">
+<form class="formblog" action="" method="post">
   <p>
-    
-    {# faire apparaitre l'id de la news en mode hidden pour la récuperer pour le mode édit #}
-    
+
+    {% if section == "blogedit" %}
+    <input type="hidden" name="id" value="{{ contentpost.post_id }}"/>
+    {% endif %}
+      
     {# mettre des verifications html du contenu avant le send #}
     <label>Votre titre</label>
-    <input type="text" name="title" value="" /><br />
-    {# if var.tile is defined afficher la valeur pour l'édite sinon laisser vide #}
+    <input type="text" name="title" id="title" value="{% if contentpost.post_title is defined %}{{ contentpost.post_title }}{% endif %}" required/><br />
     <label>Votre chapô</label>
-    <input type="text" name="catchphrase" value="" /><br />
+    <input type="text" name="catchphrase" id="catchphrase" value="{% if contentpost.post_catchphrase is defined %}{{ contentpost.post_catchphrase }}{% endif %}" required/><br />
       
-    <label>votre texte</label>
-    <textarea name="content" rows="7" cols="50"></textarea><br />
+    <label>Votre texte</label>
+    <textarea name="content" id="content" rows="7" cols="50" required>{% if contentpost.post_content is defined %}{{ contentpost.post_content }}{% endif %}</textarea><br />
     
     <label>Ecrit par</label>
-    <input type="text" name="author" value="" /><br />
+    <input type="text" name="author" id="author" value="{% if contentpost.author_name is defined %}{{ contentpost.author_name }}{% endif %}" required/><br />
     
     <input type="submit" value="Valider" />
-      
-    {# afficher les valeurs visibles en mode edit avec une condition #}
       
   </p>
 </form>

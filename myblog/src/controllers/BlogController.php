@@ -2,7 +2,7 @@
 class BlogController extends Controller
 {
     //connect to the database and return a BlogManager Object
-    public function connexion()
+    public static function connexion()
     {
         try
         {
@@ -28,7 +28,7 @@ class BlogController extends Controller
         $manager = self::connexion(); //instaciation of BlogManager
                 
         // we are calling the view and fix its parameters
-        echo self::twigCall()->render('index.twig',array(
+        echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],
         'urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class. It's used mainly for the links to the pages*/
         'postcount' => $manager->count(),
@@ -41,11 +41,11 @@ class BlogController extends Controller
         $manager = self::connexion(); //instaciation of BlogManager
                 
         // we are calling the view and fix its parameters
-        echo self::twigCall()->render('index.twig',array(
+        echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],
         'urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class. It's used mainly for the links to the pages*/
-        'post' => $_GET['post'],
-        'content' => $manager->getPost('post')
+        'post_id' => $_GET['post'],
+        'contentpost' => $manager->getPost($_GET['post'])
         ));
     }
     
@@ -55,13 +55,12 @@ class BlogController extends Controller
         if(!empty($_POST['title']))
         {   
             $dataform = new Blog($_POST);
-            $manager->save($dataform);
+            $manager->save($dataform); 
         }
         
-       
         
         // we are calling the view and fix its parameters
-        echo self::twigCall()->render('index.twig',array(
+        echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],//recover the current url
         'urls' => self::urls()/*function Brought by Routing Trait wich is called in the mother class*/)); 
     }
@@ -70,11 +69,20 @@ class BlogController extends Controller
     {
         $manager = self::connexion(); //instaciation of BlogManager
         
+        if(!empty($_POST['title']))
+        {   
+            $dataform = new Blog($_POST);
+            $manager->save($dataform);
+        }
        
         // we are calling the view and fix its parameters
-        echo self::twigCall()->render('index.twig',array(
+        echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],//recover the current url
-        'urls' => self::urls()/*function Brought by Routing Trait wich is called in the mother class*/));
+        'urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class*/
+        'post_id' => $_GET['post'],
+        'contentpost' => $manager->getPost($_GET['post']),
+        
+        ));
     }
     
 }

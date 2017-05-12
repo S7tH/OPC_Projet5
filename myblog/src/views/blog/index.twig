@@ -1,5 +1,9 @@
 {% extends "layout.twig" %}
 
+{% block bodyup %}
+<body id="page-top" class="bodyblog">
+{% endblock %}
+
 {% block navside %}
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -16,27 +20,26 @@
     <!-- Collect the nav anchorlinks, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                {% if section != "blog" %}
                 <li>
-                    <a class="page-scroll" href="{{ urls.blog }}">Voir les derniers posts</a>
+                    <a class="page-scroll" href="{{ urls.blog }}"><span class="glyphicon glyphicon-share"></span> Voir les derniers posts</a>
                 </li>
+                {% endif %}
+                {% if section != "blogadd" %}
                 <li>
-                    <a class="page-scroll" href="{{ urls.blogadd }}">Nouveau post</a>
+                    <a class="page-scroll" href="{{ urls.blogadd }}"><span class="glyphicon glyphicon-edit"></span> Nouveau post</a>
                 </li>
+                {% endif %}
+                {% if section == "blogpost" %}
                 <li>
-                    <a class="page-scroll" href="#"></a>
+                    <a class="page-scroll" href="{{ urls.blogedit }}{{ post_id }}"><span class="glyphicon glyphicon-edit"></span> Editer le post</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a class="page-scroll" href="{{ urls.home }}"><span class="glyphicon glyphicon-log-out"></span> Retour a l'accueil</a>
                 </li>
             </ul>
         </div>
-    <!-- /.navbar-collapse -->
-            
-    <!-- Collect the nav menu links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="{{ urls.home }}">Retour a l'accueil</a>
-                    </li>
-                </ul>
-            </div>
             <!-- /.navbar-collapse -->
         </div>
     <!-- /.container-fluid -->
@@ -45,99 +48,187 @@
 {% endblock %}
 
 {% block header %}
-
-{% if section == "blogadd" or section == "blogedit"  %}
-
-{% include 'form.twig' %}
-
-{% elseif section == "blogpost" %}
-<br/>{#bad design temporary for test #}
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-    <table>
-      <tr><th>Titre</th><th>accroche</th><th>Contenu</th><th>Auteur</th><th>Dernière modification</th><th>lien</th></tr>
-        <tr>
-            <td>
-                {{ contentpost.post_title }} 
-            </td>
-            <td>
-                {{ contentpost.post_catchphrase }}
-            </td>
-            <td>
-                {{ contentpost.post_content }}
-            </td>
-            <td>
-                {{ contentpost.author_name }}
-            </td>
-            <td>
-                le {{ contentpost.post_modified | date('d/m/Y à H:i:s') }}
-            </td>
+<div class="header-content">
+    <div class="header-content-inner">
+        <br/>
+        <div class="container-fluid">
             
-            <td>
-               <a href="{{ urls.blogedit }}{{ post_id }}">éditer le post</a> {# direct to the url of the post in specifying its post_id for edit it #}
-            </td>
-        </tr>
-       
-    </table>
-    
-{% else %}
-    <br/>{#bad design temporary for test #}
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-    <p style="text-align: center">Il y a actuellement {{ postcount }} post(s). En voici la liste :</p>
-    
-    <table>
-      <tr><th>Titre</th><th>Dernière modification</th><th>accroche</th><th>lien</th></tr>
-        
-        {% for p in lastpost %}
-        <tr>
-            <td>
-                {{ p.post_title }}
-            </td>
-            <td>
-               le {{ p.post_modified | date('d/m/Y à H:i:s') }}
-            </td>
-            <td>
-                {{ p.post_catchphrase }}
-            </td>
-            <td>
-               <a href="{{ urls.blogpost }}{{ p.post_id }}">lire le post</a> {# direct to the url of the post in specifying its post_id #}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+<!-- display the form of blog -->
+        {% if section == "blogadd" or section == "blogedit" and contentpost != false %} 
+            
+            <!-- if a post has been send correctly, we display a succes message  -->     
+                {% if postSucces == true %}
+                        <!-- succes send mail message-->
+                        <div class="col-sm-offset-2   col-sm-8">
+                            <h1 id="homeHeading">Post validé</h1>
+                            <hr>
+                            <a href="{{ urls.blog }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
+                        </div>
+                {% else %}
+            <!-- displaying the form-->
+                    {% include 'form.twig' %}
+            <!-- if blogedit the button return to the post-->
+                        {% if section == "blogedit" %}
+                        <div class="col-sm-offset-9  col-sm-3">
+                            <a href="{{ urls.blogpost }}{{ post_id }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-log-out"></span> Annuler</button></a>
+                        </div>
+            <!-- else the button return to all post-->
+                        {% else %}
+                        <div class="col-sm-offset-9  col-sm-3">
+                            <a href="{{ urls.blog }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-log-out"></span> Annuler</button></a>
+                        </div>
+                        {% endif %}
+                {% endif %}
+            
+<!-- display the post target of blog -->
+        {% elseif section == "blogpost" and contentpost != false %}
+            <br/>
+            <br/>
+            <div class="row">
+                <span id="blogTitle" class="col-sm-offset-2 col-sm-8 col-xs-12">
+                    <span class="glyphicon glyphicon-cd"></span>
+                    <strong>{{ contentpost.post_title }}</strong>
+                </span>
+            </div>
+            <div class="row">   
+                <div id="blogVisu" class="col-xs-12">
+	               <span id="blogCatchphrase" class="col-xs-offset-1 col-xs-10 col-sm-7"><span class="glyphicon glyph icon-paperclip"></span> {{ contentpost.post_catchphrase }}</span>
+                   <div class="col-xs-12">
+                       <p><br/> &nbsp; &nbsp; &nbsp; &nbsp; {{ contentpost.post_content }}</p>
+                   </div>
+                </div>
+            </div>
+            <div class="row"> 
+		      <div id="blogFoot" class="col-xs-offset-2 col-xs-8"><span class="glyphicon glyphicon-time"></span>  Dernière modification le {{ contentpost.post_modified | date('d/m/Y à H:i:s') }} <br/><span class="glyphicon glyphicon-user"></span> par {{ contentpost.author_name }} 
+            
+                  
+        <!-- display the confirmation to delete -->      
+              {% if delete == "confirm" %}
+                  <br/>
+                  <br/>
+                  <div class="row">
+                    <span class="col-xs-12">Etes vous sur de vouloir supprimer ce post ?</span>
+                  </div>
+                  <br/>
+                <div class="row">
+                    <a class="col-xs-6" href="{{ urls.blogdelete }}{{ post_id }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-ok"></span> oui</button></a>
+                    <a class="col-xs-6" href="index.php?section={{ section }}&amp;post={{ post_id }}"><button class="btn btn-default btn-xl sendForm">non <span class="glyphicon glyphicon-remove"></span></button></a>
+                </div>
+                  
+        <!-- display the menu to edit delete or cancel -->  
+              {% else %}
+                <div class="row">
+                    <a class="col-sm-6" href="{{ urls.blogedit }}{{ post_id }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-edit"></span> éditer le post</button></a> {# direct to the url of the post in specifying its post_id for edit it #}
+                    <div class="clearfix visible-xs-block">
+                       <br/>
+                    </div>
+                    <a class="col-xs-12 col-sm-6" href="{{ urls.blog }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-log-out"></span> Autres posts</button></a>
+                    <div class="clearfix visible-xs-block">
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                    
+              </div>
+                  <br/>
+                  <div class="row">
+                    <a class="col-xs-12" href="index.php?section={{ section }}&amp;post={{ post_id }}&amp;delete=confirm"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-share"></span>supprimer le post</button></a> {# direct to the confirmation to delete #}
+                  </div>
+            {% endif %}
+         </div>
+        </div>
+<!-- display an error message if post don't exist -->             
+        {% elseif section == "blogpost" or section == "blogedit" and contentpost == false %}
+                  {% include 'error.twig' %}   
+            
+<!-- display a succes message to delete a post -->            
+        {% elseif section == "blogdelete" %}
+            
+            <!-- if a post has been delete correctly, we display a succes message  -->    
+                {% if deleteSucces == true %}
+                        <!-- succes delete post message-->
+                        <div class="col-sm-offset-2   col-sm-8">
+                            <h1 id="homeHeading">Post supprimé</h1>
+                            <hr>
+                            <a href="{{ urls.blog }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
+                        </div>
+                {% else %}
+                        <div class="col-sm-offset-2   col-sm-8">
+                            <h1 id="homeHeading">Erreur</h1>
+                            <hr>
+                            <p>Le post n'a pas pu être supprimé, veuillez réessayer ultérieurement.</p>
+                            <a href="{{ urls.blog }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
+                        </div>
+                {% endif %}
+            
+<!-- display all posts of blog -->       
+        {% else %} 
+            {% if page <= totalpages %}
+            <div id="blogCount"><span class="glyphicon glyphicon-tasks"></span> Il y a actuellement {{ postcount }} post(s) dont voici la liste <span class="glyphicon glyphicon-triangle-bottom"></span></div>
+            
+            <div class="blogList"> 
+                {% for p in lastpost %}
+                <a class="blogFrame" href="{{ urls.blogpost }}{{ p.post_id }}">
+	
+                    <div class="blogPicture"><span class="glyphicon glyphicon-log-in"></span></div>
+	
+	                <div class="blogText">
+	
+	                   <span class="blogTitle"><span class="glyphicon glyphicon-cd"></span> {{ p.post_title }}</span>
+                        <span class="blogCatchphrase"><span class="glyphicon glyphicon-paperclip"></span> {{ p.post_catchphrase }}</span>
+	                   <span class="blogDate"><span class="glyphicon glyphicon-time"></span> <em>le {{ p.post_modified | date('d/m/Y à H:i:s') }}</em></span>
+                    </div>
+                </a>
+        {% endfor %} 
+         
+   </div> 
 
+<!-- paging system -->
+   <div class="col-sm-12">
+        <ul class="pagination pagination-sm">
+           {% if page > 1 %}
+                <li><a href="{{ urls.blogpage }}1"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
+                <li><a href="{{ urls.blogpage }}{{ page - 1 }}"><span class="glyphicon glyphicon-step-backward"></span></a></li>
+           {% endif %}
+            
+           {% for i in 1..totalpages %}
+            
+                {% if (i < nb) or (i > (totalpages - nb)) or (i < (page + nb)) and (i > (page - nb)) %}
+                        {% if i == page %}
+                        <li><a href="{{ urls.blogpage }}{{i}}"><span class="glyphicon glyphicon-file"></span></a></li>
+                        {% else %}
+                        <li><a href="{{ urls.blogpage }}{{i}}">{{i}}</a></li>
+                        {% endif %}
+            
+                {% else %}
+                        {% if (i >= nb) and (i <= (page-nb)) %}
+                            {% set i = page - nb %}
+                        {% elseif (i >= (page + nb)) and (i <= (totalpages - nb)) %}
+                            {% set i = totalpages - nb %}
+                        {% endif %}
+
+                {% endif %}
+                
+            
+           {% endfor %}
+            
+           {% if page < totalpages %}
+                <li><a href="{{ urls.blogpage }}{{ page + 1 }}"><span class="glyphicon glyphicon-step-forward"></span></a></li>
+                <li><a href="{{ urls.blogpage }}{{ totalpages }}"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
+           {% endif %}
+        </ul>
+   </div>
+   <br/>
+   <br/>
+   <div class="col-sm-offset-9  col-sm-3">
+       <a href="{{ urls.blogadd }}"><button class="btn btn-default btn-xl sendForm"><span class="glyphicon glyphicon-edit"></span> Nouveau post</button></a>
+   </div>
+ <!-- display an error message if section don't exist -->        
+    {% else %}
+            {% include 'error.twig' %}
+    {% endif %}
 {% endif %}
-
-{% endblock %}
-
-{% block page %}
-{% endblock %}
-
-{% block footer %}
-
+     </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,18 +1,21 @@
-<br/>{#bad design temporary for test #}
-
-<form class="formcontact" action="" method="post">
+<br/>
+<form action="" method="post">
   <p>
-    <label>Votre nom</label>
-    <input type="text" name="name" id="name" value="" required/><br />
-    <label>Votre prénom</label>
-    <input type="text" name="firstname" id="firstname" value="" required/><br />
-    <label>Votre adresse mail</label>
-    <input type="email" name="email" id="email" value="" required/><br />  
-    <label>Votre message</label>
-    <textarea name="message" id="message" rows="7" cols="50" required></textarea><br />
-    
-    
-    <input class="page-scroll btn btn-default btn-xl sr-button" type="submit" value="Envoyer" />
-      
+    <label class="contactLabel" for="name">Votre nom* <span class="glyphicon glyphicon-triangle-right"></span></label>
+    <input class="contactField" type="text" name="name" id="name" placeholder="2 lettres minimum " value="" minlength="2"required/>
+    <br/>
+    <label class="contactLabel" for="firstname">Votre prénom* <span class="glyphicon glyphicon-triangle-right"></span></label>
+    <input class="contactField" type="text" name="firstname" id="firstname" placeholder="2 lettres minimum " value="" minlength="2" required/><br />
+    <label class="contactLabel" for="email">Votre adresse mail* <span class="glyphicon glyphicon-triangle-right"></span></label>
+    <input class="contactField" type="email" name="email" id="email" placeholder="écrire une adresse@valid.extension" value="" pattern="^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$" required/> 
+    <br/>  
+    <br/>
+    <label class="contactLabelMsg" for="message">Votre message*
+        <br/>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+    </label><textarea class="contactArea" name="message" id="message" rows="7" cols="50" placeholder="7 lettres minimum " minlength="7" required></textarea><br />
+  </p>
+  <p>
+    <input  class="page-scroll btn btn-default btn-xl sr-button sendForm" type="submit" value="Envoyer" />
   </p>
 </form>

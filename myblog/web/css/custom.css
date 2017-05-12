@@ -1,0 +1,299 @@
+@media (min-width: 768px min-height:650px;)
+{
+    .bodyblog
+    {
+        overflow: hidden;
+    }
+}
+
+.pagination > li > a > .nolink
+{
+    color : gray;
+}
+
+.pagination > li > a
+{
+  color: #ee4c2a;
+}
+
+.pagination > li > a:hover
+{
+  color: rgba(0,0,0,0.8);
+}
+
+#homeHeading
+{
+     color: #ee4c2a;
+}
+
+header .header-content .header-content-inner p
+{
+    text-shadow: 1px 1px 1px black;
+    font-weight: bold;
+}
+
+
+#mystere
+{
+    border-radius: 10px;
+}
+
+.contactLabel, .blogLabel
+{
+    text-align:right;
+}
+
+.contactLabelMsg, .blogLabelMsg
+{
+    text-align:center;
+}
+
+.contactLabel, .blogLabel, .contactLabelMsg, .blogLabelMsg
+{
+    color:white;
+    background-color:#ee4c2a;
+    font-size: 0.85em;
+	padding: 0.2%;
+    width: 40%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 3px black;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.contactLabel:hover,.contactLabelMsg:hover, .blogLabel:hover, .blogLabelMsg:hover
+{
+    cursor:pointer;
+    color:#ee4c2a;
+	background-color:white;
+}
+
+.contactField, .contactArea, .blogField, .blogArea
+{
+    color : #ee4c2a;
+    font-weight: bold;
+    padding: 0.5%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 3px black;
+}
+
+.contactField, .blogField
+{
+    width: 40%;
+    margin-bottom :2%;
+    margin-left:10%;
+    font-size: 0.85em;
+}
+
+.contactArea, .blogArea
+{
+    width: 80%;
+    margin-top:2%;
+}
+
+
+input[type=text]:invalid,
+input[type=email]:invalid,
+textarea:invalid
+{
+  border: 2px solid dimgrey;
+  color:#ee4c2a;
+}
+
+input[type=text]:valid,
+input[type=email]:valid,
+textarea:valid
+{
+  border: 2px solid greenyellow;
+  background-color: #ee4c2a;
+  color:white;
+}
+
+input:focus, textarea:focus
+{
+  outline-color:floralwhite;
+  outline-style: double;
+}
+
+.sendForm
+{
+    color:white;
+	background-color:#ee4c2a;
+    box-shadow: 0px 4px 3px black;
+}
+
+.sendForm:hover
+{
+    cursor:pointer;
+    color:#ee4c2a;
+	background-color:white;
+}
+
+.anchor
+{
+    color:#ee4c2a;
+    background-color:rgba(0,0,0,0.8);
+    box-shadow: 0px 4px 3px black;
+    width:180px;
+    height:55px;
+}
+
+.anchor:hover
+{
+    cursor:pointer;
+    color:white;
+    background-color:#ee4c2a;
+}
+
+a:hover
+{
+    text-decoration-line: none;
+    font-weight: bold;
+}
+
+
+.blogList
+{
+    height: 414px;
+    overflow:auto;
+    border-radius: 8px;
+}
+
+#blogTitle, #blogFoot
+{
+	text-align: center;
+	padding: 0.6%;
+	background-color:#ee4c2a;
+	border: 2px groove rgba(238,76,42,0.5);
+	border-radius: 8px;
+    box-shadow: 0px 4px 3px black;
+	color: white;
+	font-size: 14px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#blogTitle
+{
+    margin-top: -4%;
+}
+
+#blogVisu
+{
+	text-align: justify;
+	padding: 0.4%;
+	border: 4px groove rgba(238,76,42,0.5);
+	border-radius: 10px;
+	box-shadow:0px 16px 16px rgba(238,76,42,0.2);
+	background-color: rgba(0,0,0,0.6);
+	font-size: 14px;
+	color: rgb(215,215,215);
+	margin-top:-0.5%;
+    min-height: 530px;
+    word-wrap:break-word;
+    overflow:auto;
+    
+}
+
+#blogCatchphrase
+{
+	border: 2px ridge rgba(238,76,42,0.5);
+	border-radius: 8px;
+    padding:3px;
+	vertical-align:bottom;
+    box-shadow: 0px 5px 5px black;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    margin-top:2%;
+	margin-left:5%;
+	overflow:hidden;
+}
+
+#blogFoot
+{
+    margin-top:-3%;
+}
+
+.blogFrame
+{
+	display:flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	width:100%;
+	height:68px;
+	border:2px groove silver;	
+	border-radius:12px;
+	overflow:hidden;
+    color:white;
+    background:#ee4c2a;
+    margin-bottom: 0.1%;
+}
+
+
+.blogFrame:hover
+{
+	background:rgba(0,0,0,0.7);
+	font-style: normal;
+	border:4px groove #ee4c2a;
+    color:#ee4c2a;
+
+}
+
+.blogPicture
+{
+	width:50px;
+	border-right:2px groove grey;	
+	overflow:hidden;
+    margin:auto;
+}
+
+
+.blogText
+{
+	display:flex;
+	justify-content: flex-start;
+	justify-content: space-between;
+	padding:1.4%;
+	width:100%;
+	background-color: rgba(0,0,0,0.5);
+    padding-top:2%;
+}
+
+.blogTitle
+{
+    width: 35%;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.blogCatchphrase
+{
+    width: 40%;
+    text-align: left;
+	font-size:14px;
+}
+
+.blogDate
+{
+    width: 25%;
+    text-align: left;
+	font-size:12px;
+}
+
+#blogCount
+{
+    width : 100%;
+    height: 68px;
+    color:white;
+    background-color: #ee4c2a;
+    border-radius: 8px;
+    border: 4px ridge silver;
+    padding-top:2%;
+}

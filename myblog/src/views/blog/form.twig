@@ -1,38 +1,25 @@
-<br/>{#bad design temporary for test #}
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<form class="formblog" action="" method="post">
-  <p>
-
-    {% if section == "blogedit" %}
-    <input type="hidden" name="id" value="{{ contentpost.post_id }}"/>
-    {% endif %}
-      
-    {# mettre des verifications html du contenu avant le send #}
-    <label>Votre titre</label>
-    <input type="text" name="title" id="title" value="{% if contentpost.post_title is defined %}{{ contentpost.post_title }}{% endif %}" required/><br />
-    <label>Votre chapô</label>
-    <input type="text" name="catchphrase" id="catchphrase" value="{% if contentpost.post_catchphrase is defined %}{{ contentpost.post_catchphrase }}{% endif %}" required/><br />
-      
-    <label>Votre texte</label>
-    <textarea name="content" id="content" rows="7" cols="50" required>{% if contentpost.post_content is defined %}{{ contentpost.post_content }}{% endif %}</textarea><br />
-    
-    <label>Ecrit par</label>
-    <input type="text" name="author" id="author" value="{% if contentpost.author_name is defined %}{{ contentpost.author_name }}{% endif %}" required/><br />
-    
-    <input type="submit" value="Valider" />
-      
-  </p>
+<form action="" method="post">
+        <p>
+            {% if section == "blogedit" %}
+                <input type="hidden" name="id" value="{{ contentpost.post_id }}"/>
+            {% endif %} 
+            <label class="blogLabel" for="title"><span class="glyphicon glyphicon-cd"></span> Votre titre* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField"type="text" name="title" id="title" placeholder="2 lettres minimum" minlength="2" value="{% if contentpost.post_title is defined %}{{ contentpost.post_title }}{% endif %}" required/>
+        <br/>
+            <label class="blogLabel" for="catchphrase"><span class="glyphicon glyphicon-paperclip"></span> Votre chapô* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField" type="text" name="catchphrase" id="catchphrase" placeholder="2 lettres minimum" minlength="2" value="{% if contentpost.post_catchphrase is defined %}{{ contentpost.post_catchphrase }}{% endif %}" required/>
+        <br/>
+            <label class="blogLabelMsg" for="content"><span class="glyphicon glyphicon-phone"></span> Votre texte*
+                <br/>
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </label>
+            <textarea class="blogArea" name="content" id="content" rows="7" cols="50" placeholder="7 charactères minimum et 800 max" minlength="7" maxlength="800" required>{% if contentpost.post_content is defined %}{{ contentpost.post_content }}{% endif %}</textarea>
+        <br/>
+        <br/>
+            <label class="blogLabel" for="author"><span class="glyphicon glyphicon-user"></span> Ecrit par* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField" type="text" name="author" id="author" placeholder="2 lettres minimum" minlength="2" value="{% if contentpost.author_name is defined %}{{ contentpost.author_name }}{% endif %}" required/>
+        <br/>
+        <br/>
+            <input class="btn btn-default btn-xl sendForm" type="submit" value="Valider"/>  
+        </p>
 </form>

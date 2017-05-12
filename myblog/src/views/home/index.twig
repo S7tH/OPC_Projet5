@@ -14,23 +14,20 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#page-top">Présentation</a>
+                    <a class="page-scroll" href="#page-top"><span class="glyphicon glyphicon-user"></span> Présentation</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Me contacter</a>
+                    <a class="page-scroll" href="#contact"><span class="glyphicon glyphicon-comment"></span> Me contacter</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#other"><span class="glyphicon glyphicon-globe"></span> Réseaux</a>
+                </li>
+                <li>
+                     <a class="page-scroll" href="{{ urls.blog }}"><span class="glyphicon glyphicon-log-in"></span> Lire mon BLog</a>
                 </li>
             </ul>
         </div>
     <!-- /.navbar-collapse -->
-    <!-- Collect the nav menu links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="{{ urls.blog }}">Lire mon BLog</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
     <!-- /.container-fluid -->
     </nav>
@@ -46,20 +43,23 @@
                 <div class="container-fluid">
                     <!--Logo and photo -->
                     <div class="col-sm-offset-9  col-sm-3 hidden-xs">
-                        <a href="web/img/portfolio/fullsize/me.jpg" class="portfolio-box">
+                        <a href="web/img/portfolio/fullsize/cv.pdf" class="portfolio-box" target="_blank"> 
                             <img id="mystere" src="web/img/portfolio/thumbnails/me.jpg" class="img-responsive" alt="">
                                 <div class="portfolio-box-caption">
                                     <div class="portfolio-box-caption-content">
                                         <div class="project-category text-faded">
                                             Qui suis-je ?
                                         </div>
-                                        <div class="project-name">
-                                            Cliquez pour le savoir !
+                                        <div class="project-name" >
+                                            Cliquez ici pour le découvrir !
                                         </div>
                                     </div>
                                 </div>
                         </a>
+                        <br/>
+                        <span class="glyphicon glyphicon-triangle-top fa-2x"></span>
                     </div>
+                    
                 </div>
                 
                 <br/>
@@ -69,7 +69,7 @@
                     <h1 id="homeHeading">Thériot Aurélien</h1>
                     <hr>
                     <p>Créatif, ayant un oeil ouvert sur les technologies avant-gardistes, je dévoile mon univers à travers le design et la programmation.</p>
-                    <a href="#contact" class="btn btn-primary btn-xl page-scroll hidden-xs">Me contacter</a>
+                    <a href="#contact" class="btn btn-primary btn-xl page-scroll hidden-xs anchor">Me contacter<br/><span class="glyphicon glyphicon-chevron-down"></span></a>
                 </div>
             
              
@@ -85,7 +85,7 @@
                     <h1 id="homeHeading">Votre demande a bien été prise en compte</h1>
                     <hr>
                     <p>Je tacherai de vous répondre le plus rapidement possible, bonne journée et à bientôt.</p>
-                    <a href="{{ urls.home }}" class="btn btn-primary btn-xl page-scroll hidden-xs">Retourner a l'accueil</a>
+                    <a href="{{ urls.home }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="container text-center">
             <div class="col-xs-offset-3 col-xs-6">
              
-                        <a href="web/img/portfolio/fullsize/me.jpg" class="portfolio-box">
+                        <a href="web/img/portfolio/fullsize/cv.pdf" class="portfolio-box" target="_blank">
                             <img id="mystere" src="web/img/portfolio/thumbnails/me.jpg" class="img-responsive" alt="">
                                 <div class="portfolio-box-caption">
                                     <div class="portfolio-box-caption-content">
@@ -109,7 +109,7 @@
                                             Qui suis-je ?
                                         </div>
                                         <div class="project-name">
-                                            Cliquez pour le savoir !
+                                            Cliquez ici pour le découvrir !
                                         </div>
                                     </div>
                                 </div>
@@ -123,37 +123,53 @@
     <!--contact form-->      
     <section class="bg-primary" id="contact">
         <div class="container">
+                
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="#page-top" class="btn btn-primary btn-xl page-scroll hidden-xs anchor">Présentation<br/><span class="glyphicon glyphicon-chevron-up"></span></a>
+                    <a href="#other" class="btn btn-primary btn-xl page-scroll hidden-xs anchor">Réseaux<br/><span class="glyphicon glyphicon-chevron-down"></span></a>
+                    <br/><br/><br/>
                     <h2 class="section-heading">Contactez moi</h2>
                     <hr class="light">
                     <p class="text-faded">Veuillez renseigner les champs suivant pour me contacter</p>
-                    {% include 'form.twig' %}
+                    
+                    {% include 'form.twig' %} {# our contact form #}
                 </div>
             </div>
         </div>
     </section>
 
 
-    <section>
+    <section id="other">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Autres moyens de contact</h2>
+                    <a href="#contact" class="btn btn-primary btn-xl page-scroll hidden-xs anchor">Me contacter<br/><span class="glyphicon glyphicon-chevron-up"></span></a>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h2 class="section-heading">Autres contacts & réseaux sociaux</h2>
                     <hr class="primary">
-                    <p>Vous pouvez également me contacter par mail ou directement par téléphone.</p>
+                    
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x sr-contact"></i>
-                    <p>00-25-76-68-90</p>
+                    <i class="glyphicon glyphicon-envelope fa-3x sr-contact"></i>
+                    <p><a href="mailto:your-email@your-domain.com">aurelien.theriot@gmail.com</a></p>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">aurelien.theriot@gmail.com</a></p>
+                    <i class="glyphicon glyphicon-education fa-3x sr-contact"></i>
+                    <p><a href="web/img/portfolio/fullsize/cv.pdf" target="_blank">Voir mon CV</a></p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa-3x sr-contact"><img src="web/img/portfolio/fullsize/github.png" alt=""></i>
+                    <p><a href="https://github.com/S7tH" target="_blank">Voir mon GitHub</a></p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa-3x sr-contact"><img src="web/img/portfolio/fullsize/linkedin.png" alt=""></i>
+                    <p><a href="https://www.linkedin.com/in/aurelien-theriot-66178812a/" target="_blank">Voir mon Linkedin</a></p>
                 </div>
             </div>
         </div>
     </section>
 {% endif %}
 {% endblock %}
-

@@ -4,13 +4,15 @@ class TwigInstance
 {
     const ROOT = "src/views/",
           HOME = "src/views/home/",
-          BLOG = "src/views/blog/";
+          BLOG = "src/views/blog/",
+          ERROR= "src/views/error/";
+    
     
 
     public static function twigLoad($path)
     {
         //checking of the parameter is one of these following constantes 
-        if (in_array($path, [self::HOME, self::BLOG]))
+        if (in_array($path, [self::HOME, self::BLOG, self::ERROR]))
         {
             $loader = new Twig_Loader_Filesystem(array($path, self::ROOT));//ROOT allow Php to find the layout
         }

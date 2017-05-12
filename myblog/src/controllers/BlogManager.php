@@ -4,6 +4,8 @@ class BLogManager
 {
     //attribute
     private $_database;
+    private $_postSucces;
+    private $_deleteSucces;
 
     //method in charge to save the instance of PDO 
     public function __construct(PDO $database)
@@ -36,6 +38,7 @@ class BLogManager
             return $id = $this->_database->lastInsertId(); 
         }
     }
+    
     
     //method to add a post
     public function add(Blog $post)
@@ -81,6 +84,18 @@ class BLogManager
         $quest->execute();
         $quest->closeCursor();
     }
+    
+    public function delete($id)
+    {
+        $id = (int) $id;
+
+        $quest = $this->_database->prepare('DELETE FROM my_posts WHERE post_id = :id');
+        $quest->bindParam(':id', $id);
+        $quest->execute();
+        $quest->closeCursor();
+        
+        return $this->_deleteSucces = true;
+    }
 
     //method for save a post
     public function save(Blog $post)
@@ -88,6 +103,8 @@ class BLogManager
         if ($post->isValid())
         {
             $post->isNew() ? $this->add($post) : $this->update($post);
+            
+            return $this->_postSucces = true;
         }
         else
         {
@@ -98,6 +115,8 @@ class BLogManager
     //method wich return a post per its id
     public function getPost($id)
     {
+        $id = (int)$id;
+        
         $quest = $this->_database->prepare
         (
         'SELECT * FROM (my_authors, my_posts)
@@ -110,10 +129,18 @@ class BLogManager
         $quest->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Blog');
 
         $post = $quest->fetch();
+        if($post)
+        {
+            $post->setPost_modified(new DateTime($post->post_modified()));
         
-        $post->setPost_modified(new DateTime($post->post_modified()));
-
-        return $post;
+            return $post; 
+        }
+        else
+        {
+            return false;
+        }
+        
+        $quest->closeCursor();
     }
 
     //method wich return the list of posts

@@ -1,0 +1,40 @@
+<br/>
+<form action="" method="post">
+  <p>
+    <div class="col-xs-12 ">
+        <label class="contactLabel" for="name">Votre nom* <br/><span class="glyphicon glyphicon-triangle-bottom"></span></label>
+    </div>
+    <div>
+        <input class="contactField" type="text" name="name" id="name" placeholder="2 lettres minimum " value="" minlength="2"required/>
+    </div>
+
+
+    <div class="col-xs-12">
+    <label class="contactLabel" for="firstname">Votre prénom* <br/><span class="glyphicon glyphicon-triangle-bottom"></span></label>
+    </div>
+    <div>
+        <input class="contactField" type="text" name="firstname" id="firstname" placeholder="2 lettres minimum " value="" minlength="2" required/>
+    </div>   
+ 
+    <div class="col-xs-12">
+        <label class="contactLabel" for="email">Votre adresse mail* <br/><span class="glyphicon glyphicon-triangle-bottom"></span></label>
+    </div>
+    <div>
+    <input class="contactField" type="email" name="email" id="email" placeholder="écrire une adresse@valid.extension" value="" pattern="^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$" required/> 
+    </div>
+    <br/>  
+    <br/>
+    <div class="col-xs-12">
+        <label class="contactLabelMsg" for="message">Votre message*
+            <br/>
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+        </label>
+    </div>
+    <div>
+        <textarea class="contactArea" name="message" id="message" rows="7" cols="50" placeholder="7 lettres minimum " minlength="7" required></textarea><br />
+    </div>
+  </p>
+  <p>
+    <input  class="page-scroll btn btn-default btn-xl sr-button sendForm" type="submit" value="Envoyer" />
+  </p>
+</form>

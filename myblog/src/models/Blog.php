@@ -55,9 +55,7 @@ class Blog
     {
         return !(empty($this->_title) || empty($this->_catchphrase) || empty($this->_content) || empty($this->_author));
     }
-
     
-
     //GETTERS
     public function errors(){ return $this->_errors;}
 
@@ -91,7 +89,7 @@ class Blog
         }
         else
         {
-            $this->_title = $title;
+            $this->_title = htmlspecialchars($title);
         }
     }
 
@@ -103,7 +101,7 @@ class Blog
         }
         else
         {
-            $this->_catchphrase = $catchphrase;
+            $this->_catchphrase = htmlspecialchars($catchphrase);
         }
     }
 
@@ -115,7 +113,7 @@ class Blog
         }
         else
         {
-            $this->_content = $content;
+            $this->_content = htmlspecialchars($content);
         }
     }
 
@@ -127,7 +125,7 @@ class Blog
         }
         else
         {
-            $this->_author = $author;
+            $this->_author = htmlspecialchars($author);
         }
     }
 

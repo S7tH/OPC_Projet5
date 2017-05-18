@@ -1,4 +1,4 @@
-@media (min-width: 768px min-height:650px;)
+@media all and (min-width: 768px)
 {
     .bodyblog
     {
@@ -6,61 +6,129 @@
     }
 }
 
-.pagination > li > a > .nolink
+body
 {
-    color : gray;
+    min-width: 320px;
+    min-height: 769px;
 }
 
-.pagination > li > a
+#bodyback
 {
-  color: #ee4c2a;
+    background-color:#ee4c2a;
 }
 
-.pagination > li > a:hover
+
+#homeHeading, .section-heading, .anchor, a, .navbar-brand, .sendForm
 {
-  color: rgba(0,0,0,0.8);
+  font-family: 'Permanent Marker', cursive;
 }
 
 #homeHeading
 {
-     color: #ee4c2a;
+  color: #ee4c2a;
+  text-shadow: 0px 1px 3px black;
 }
+
+p, span, #blogCount, #blogFoot
+{  
+  font-family: 'Kaushan Script', cursive;
+}
+
+p
+{
+    font-size: 1.6em; 
+}
+
+span
+{
+    font-size: 1.2em; 
+}
+
+
 
 header .header-content .header-content-inner p
 {
     text-shadow: 1px 1px 1px black;
-    font-weight: bold;
 }
 
 
-#mystere
+#mystere, .portfolio-box-caption
 {
     border-radius: 10px;
+    margin:auto;
+    box-shadow: 1px 3px 3px black;
 }
 
-.contactLabel, .blogLabel
+.contactLabel,.contactLabelMsg
 {
-    text-align:right;
-}
-
-.contactLabelMsg, .blogLabelMsg
-{
+    font-size: 1.3em;
+    padding:1%;
+    width:100%;
+    height:100%;
+    margin-bottom: -1%;
     text-align:center;
+    box-shadow: 0px 4px 6px black;
 }
+
+.blogLabel, .blogLabelMsg
+{
+    font-size: 0.85em;
+    padding: 0.2%;
+    box-shadow: 0px 8px 6px black;
+}
+
+.blogLabel
+{
+    width: 40%;
+    min-height:38px;
+    height:100%;
+}
+
+.blogLabelMsg
+{
+    width: 100%;
+    margin-bottom:-1%;
+}
+
+.blogField, .blogArea, .contactField, .contactArea
+{
+    font-family: 'Kaushan Script', cursive;
+    color : #ee4c2a;
+    padding:auto;
+    border-radius: 8px;
+    box-shadow: 0px 10px 3px black;
+    font-size: 1.3em;
+    padding:1%;
+}
+
+.blogField
+{
+    margin-bottom : 5%;
+    width:61%;
+    height:100%;
+    margin-left:-1%;
+    margin-top:1%;
+}
+
+.blogArea
+{
+    width:98%;
+    height: 60px;
+    max-height: 300px;
+}
+
 
 .contactLabel, .blogLabel, .contactLabelMsg, .blogLabelMsg
 {
+    font-family: 'Permanent Marker', cursive;
     color:white;
     background-color:#ee4c2a;
-    font-size: 0.85em;
-	padding: 0.2%;
-    width: 40%;
     border-radius: 8px;
-    box-shadow: 0px 4px 3px black;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+
 }
 
 .contactLabel:hover,.contactLabelMsg:hover, .blogLabel:hover, .blogLabelMsg:hover
@@ -70,27 +138,18 @@ header .header-content .header-content-inner p
 	background-color:white;
 }
 
-.contactField, .contactArea, .blogField, .blogArea
+.contactField, .contactArea
 {
+    font-family: 'Kaushan Script', cursive;
     color : #ee4c2a;
-    font-weight: bold;
-    padding: 0.5%;
+    padding:auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 3px black;
-}
-
-.contactField, .blogField
-{
-    width: 40%;
-    margin-bottom :2%;
-    margin-left:10%;
-    font-size: 0.85em;
-}
-
-.contactArea, .blogArea
-{
-    width: 80%;
-    margin-top:2%;
+    box-shadow: 0px 6px 3px black;
+    margin-bottom : 5%;
+    width:95%;
+    height:100%;
+    font-size: 1.3em;
+    padding:1%;
 }
 
 
@@ -121,7 +180,11 @@ input:focus, textarea:focus
 {
     color:white;
 	background-color:#ee4c2a;
+    text-shadow: 0px 2px 2px black;
     box-shadow: 0px 4px 3px black;
+    font-size: 1em;
+    margin-top:-5%;
+    margin-bottom:5%;
 }
 
 .sendForm:hover
@@ -151,57 +214,59 @@ a:hover
 {
     text-decoration-line: none;
     font-weight: bold;
+    text-shadow: 0px 1px 3px black;
 }
 
-
-.blogList
+.blog
 {
-    height: 414px;
-    overflow:auto;
-    border-radius: 8px;
+    margin-top: 10%;
 }
 
 #blogTitle, #blogFoot
 {
 	text-align: center;
 	padding: 0.6%;
-	background-color:#ee4c2a;
-	border: 2px groove rgba(238,76,42,0.5);
 	border-radius: 8px;
-    box-shadow: 0px 4px 3px black;
+    text-shadow: 0px 2px 2px black;
 	color: white;
-	font-size: 14px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+    word-wrap:break-word;
 }
 
 #blogTitle
 {
-    margin-top: -4%;
+    font-size: 1.6em;
+    text-shadow: 0px 2px 2px black;
+    margin-bottom: -1%;
+    background-color:rgba(238,76,42,1);
+    box-shadow:0px 16px 16px rgba(255,255,255,0.1);
+    border: 2px groove rgba(255,255,255,0.7);
+    
 }
 
 #blogVisu
 {
 	text-align: justify;
 	padding: 0.4%;
-	border: 4px groove rgba(238,76,42,0.5);
+	border: 2px groove black;
 	border-radius: 10px;
-	box-shadow:0px 16px 16px rgba(238,76,42,0.2);
 	background-color: rgba(0,0,0,0.6);
 	font-size: 14px;
 	color: rgb(215,215,215);
-	margin-top:-0.5%;
-    min-height: 530px;
+    min-height: 250px;
+    height:100%;
+    width: 99%;
+    margin-left:0.5%;
     word-wrap:break-word;
     overflow:auto;
-    
 }
 
 #blogCatchphrase
 {
-	border: 2px ridge rgba(238,76,42,0.5);
+	border: 2px ridge rgba(238,76,42,0.8);
 	border-radius: 8px;
     padding:3px;
 	vertical-align:bottom;
@@ -217,7 +282,25 @@ a:hover
 
 #blogFoot
 {
-    margin-top:-3%;
+    margin-top:-0.5%;
+    font-size: 1.2em; 
+    width:100%;
+    margin-bottom:3%;
+    background-color:rgba(255,255,255,0.1);
+    box-shadow:0px 16px 16px rgba(238,76,42,0.2);
+    border: 4px groove rgba(238,76,42,1);
+}
+
+
+
+
+.blogList
+{
+    height: 414px;
+    overflow:hidden;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.4);
+    border: 2px groove black;
 }
 
 .blogFrame
@@ -235,24 +318,14 @@ a:hover
     margin-bottom: 0.1%;
 }
 
-
 .blogFrame:hover
 {
-	background:rgba(0,0,0,0.7);
+	background:transparent;
 	font-style: normal;
 	border:4px groove #ee4c2a;
     color:#ee4c2a;
 
 }
-
-.blogPicture
-{
-	width:50px;
-	border-right:2px groove grey;	
-	overflow:hidden;
-    margin:auto;
-}
-
 
 .blogText
 {
@@ -262,7 +335,15 @@ a:hover
 	padding:1.4%;
 	width:100%;
 	background-color: rgba(0,0,0,0.5);
-    padding-top:2%;
+    padding:2%;
+}
+
+.blogPicture
+{
+	width:50px;
+	border-right:2px groove grey;	
+	overflow:hidden;
+    margin:auto;
 }
 
 .blogTitle
@@ -282,18 +363,97 @@ a:hover
 
 .blogDate
 {
-    width: 25%;
+    width: 20%;
     text-align: left;
 	font-size:12px;
 }
 
-#blogCount
+@media all and (max-width: 450px)
+{
+    .blogTitle
+    {
+        font-size: 16px;
+    }
+    
+    .blogDate
+    {
+	   font-size:10px;
+    }
+}
+
+
+#blogCount, .bbcode
 {
     width : 100%;
-    height: 68px;
     color:white;
     background-color: #ee4c2a;
     border-radius: 8px;
-    border: 4px ridge silver;
+    border: 4px ridge silver; 
     padding-top:2%;
+    font-size: 1.3em; 
+    text-shadow: 0px 2px 2px black;
+    height: 68px;
+}
+
+#blogPage, #blogPageMob, .bbcode
+{
+   border-radius: 8px;
+   min-height: 68px;
+   margin-bottom: 2%;
+   background-color:rgba(255,255,255,0.1);
+   box-shadow:0px 16px 16px rgba(238,76,42,0.2);
+   border: 2px groove rgba(238,76,42,1);
+}
+
+
+#blogPageMob > ul > li > a,
+#blogPage > ul > li > a
+{
+    border: 3px ridge silver; 
+    border-radius: 18px;
+    background-color: #ee4c2a;
+    color:white;
+    text-shadow: 0px 2px 2px black;
+}
+
+
+#blogPageMob > ul > li > a:hover,
+#blogPage > ul > li > a:hover
+{
+    color: #ee4c2a;
+    background-color: white;
+    border: 6px ridge rgba(238,76,42,1); 
+    box-shadow:0px 16px 16px rgba(238,76,42,0.2);
+}
+
+.bbcode
+{
+    margin-top:-5%;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    height: 100%;
+}
+
+
+.btcode
+{
+    color:#ee4c2a;
+    border: 1px ridge rgba(238,76,42,1);
+    border-radius: 8px;
+    background-color:rgba(0,0,0,0.8);
+    box-shadow: 0px 4px 3px black;
+    width:10px;
+    height:30px;
+    text-align: center;
+    margin-right:12%;
+    margin-bottom: 3%;
+    font-size:  0.6em;
+}
+
+.btcode:hover
+{
+    cursor:pointer;
+    color:white;
+    background-color:#ee4c2a;
 }

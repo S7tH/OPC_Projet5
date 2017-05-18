@@ -1,6 +1,7 @@
 <?php
 class BlogController extends Controller
 {
+    
     //connect to the database and return a BlogManager Object
     public static function connexion()
     {
@@ -34,7 +35,7 @@ class BlogController extends Controller
             $start = (($page - 1) * $limit);
             $totalElts = $manager->count();
             $nb_page = ceil($totalElts / $limit);
-            $nbLimit = 6;
+            $nbLimit = 3;
         }
         else
         {
@@ -59,7 +60,7 @@ class BlogController extends Controller
     public function getAction()
     {
         $manager = self::connexion(); //instaciation of BlogManager
-
+        
         //check if var delete exist else delete will be null
         if (isset($_GET['delete']))
         {
@@ -80,33 +81,42 @@ class BlogController extends Controller
             $page = new ErrorController;//error 404
             return $page->indexAction();
         }
-                   
+        
+        $post = $manager->getPost($_GET['post']);
+        
+        
         // we are calling the view and fix its parameters
         echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],
         'urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class. It's used mainly for the links to the pages*/
         'post_id' => $postId,
-        'contentpost' => $manager->getPost($_GET['post']),
-        'delete' => $delete
+        'contentpost' => $post,
+        'delete' => $delete,
+        'bbcode' => new BBCode //allow to use my class BBCode for change the bbcode of my blog text in html markup during its display
         ));
     }
     
     public function addAction()
     {
         $postSucces = false;
+        $setcookie = null;
         
         $manager = self::connexion(); //instanciation of BlogManager
         if(!empty($_POST['title']))
         {   
             $dataform = new Blog($_POST);
             $postSucces = $manager->save($dataform);
+            $nickname = $dataform->author();
+            $setcookie = setcookie('nickname', $nickname, time() + 365*24*3600, null, null, false, true);
         }
-        
+                         
         // we are calling the view and fix its parameters
         echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],//recover the current url
         'urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class*/
-        'postSucces' => $postSucces)); 
+        'postSucces' => $postSucces,
+        'setCookie' => $setcookie,
+        'cookie' => $_COOKIE)); 
     }
     
     public function editAction()
@@ -131,7 +141,8 @@ class BlogController extends Controller
             $page = new ErrorController;//error
             return $page->indexAction();
         }
-       
+        
+        
         // we are calling the view and fix its parameters
         echo $this->twigCall()->render('index.twig',array(
         'section' => $_GET['section'],//recover the current url

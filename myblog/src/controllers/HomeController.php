@@ -20,13 +20,11 @@ class HomeController extends Controller
             
             //we try to send the mail
             $mailSucces = $manager->sendMail($dataform);
-            
         }
         
         // we are calling the view and fix its parameters
         echo $this->twigCall()->render('index.twig',
         array('urls' => self::urls(),/*function Brought by Routing Trait wich is called in the mother class*/
-              'mailSucces' => $mailSucces
-            ));
+              'mailSucces' => $mailSucces));
     }
 }

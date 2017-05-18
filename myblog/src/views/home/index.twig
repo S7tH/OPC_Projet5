@@ -1,5 +1,6 @@
 {% extends "layout.twig" %}
 
+
 {% block navside %}
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -8,7 +9,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Welcome to my network</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Welcome to my blog</a>
             </div>
     <!-- Collect the nav anchorlinks, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,7 +61,7 @@
                         <span class="glyphicon glyphicon-triangle-top fa-2x"></span>
                     </div>
                     
-                </div>
+               
                 
                 <br/>
                     
@@ -73,8 +74,8 @@
                 </div>
             
              
-
             </div>
+          </div>
         </div>
     {% else %}{# if a mail has been send correctly, we display a succes message #}
         <div class="header-content">
@@ -85,7 +86,7 @@
                     <h1 id="homeHeading">Votre demande a bien été prise en compte</h1>
                     <hr>
                     <p>Je tacherai de vous répondre le plus rapidement possible, bonne journée et à bientôt.</p>
-                    <a href="{{ urls.home }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
+                    <a href="{{ urls.home }}" class="btn btn-primary btn-xl page-scroll sendForm"><span class="glyphicon glyphicon-play"></span></a>
                 </div>
             </div>
         </div>
@@ -100,7 +101,7 @@
     <aside class="bg-dark visible-xs">
         <div class="container text-center">
             <div class="col-xs-offset-3 col-xs-6">
-             
+                
                         <a href="web/img/portfolio/fullsize/cv.pdf" class="portfolio-box" target="_blank">
                             <img id="mystere" src="web/img/portfolio/thumbnails/me.jpg" class="img-responsive" alt="">
                                 <div class="portfolio-box-caption">

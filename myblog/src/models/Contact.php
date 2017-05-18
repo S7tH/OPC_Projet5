@@ -70,7 +70,7 @@ class Contact
         }
         else
         {
-            $this->_name = $name;
+            $this->_name = htmlspecialchars($name);
         }
     }
 
@@ -82,7 +82,7 @@ class Contact
         }
         else
         {
-            $this->_firstname = $firstname;
+            $this->_firstname = htmlspecialchars($firstname);
         }
     }
 
@@ -106,7 +106,7 @@ class Contact
         }
         else
         {
-            $this->_message = $message;
+            $this->_message = htmlspecialchars($message);
         }
     }
 }

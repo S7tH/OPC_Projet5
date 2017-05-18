@@ -129,10 +129,11 @@ class BLogManager
         $quest->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Blog');
 
         $post = $quest->fetch();
+        
         if($post)
         {
             $post->setPost_modified(new DateTime($post->post_modified()));
-        
+            
             return $post; 
         }
         else

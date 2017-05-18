@@ -22,7 +22,8 @@ class TwigInstance
         }
 
         return new Twig_Environment($loader, array(
-        'cache' => false
+        'cache' => false,
+        'autoescape' => false
         ));
     }
 }

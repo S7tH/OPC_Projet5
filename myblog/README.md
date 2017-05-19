@@ -1,3 +1,18 @@
+HOW TO INSTALL THIS PROJECT
+
+1 Download or clone this project on your local machine 
+    - https://github.com/S7tH/OPC_Projet5.git
+    
+2 Install Composer at the root in myblog folder
+    - https://getcomposer.org/
+    
+3 Update composer for recover the miss files
+    - php composer.phar update
+
+4 Import the database sql file in your server. 
+
+    
+#######More on Bootstrap theme#################
 # [Start Bootstrap](http://startbootstrap.com/) - [Creative](http://startbootstrap.com/template-overviews/creative/)
 
 [Creative](http://startbootstrap.com/template-overviews/creative/) is a one page creative theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).

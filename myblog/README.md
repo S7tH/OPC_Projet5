@@ -9,7 +9,10 @@ HOW TO INSTALL THIS PROJECT
 3 Update composer for recover the miss files
     - php composer.phar update
 
-4 Import the database sql file in your server. 
+4 configure your database :
+    -open the DBFactory.php folder (src/models/DBFactory.php)
+    -change the constantes values by yours. 
+
 
     
 #######More on Bootstrap theme#################

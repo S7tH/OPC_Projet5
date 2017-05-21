@@ -8,6 +8,7 @@ class BlogController extends Controller
         try
         {
             $database = DBFactory::getDBConnexion();
+            
             return new BLogManager($database);
         }
         catch (RuntimeException $e)

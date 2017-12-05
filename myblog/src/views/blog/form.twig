@@ -1,0 +1,34 @@
+<form action="" method="post" name="form" class="blog">
+        <p>
+            {% if section == "blogedit" %}
+                <input type="hidden" name="id" value="{{ contentpost.post_id }}"/>
+            {% endif %} 
+            <label class="blogLabel col-xs-12" for="title"><span class="glyphicon glyphicon-cd"></span> Votre titre* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField"type="text" name="title" id="title" placeholder="2 char min & 40 max" minlength="2" maxlength="40" value="{% if contentpost.post_title is defined %}{{ contentpost.post_title }}{% endif %}" required/>
+        <br/>
+            <label class="blogLabel col-xs-12" for="catchphrase"><span class="glyphicon glyphicon-paperclip"></span> Votre chapô* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField" type="text" name="catchphrase" id="catchphrase" placeholder="2 char min & 77 max" minlength="2" maxlength="77" value="{% if contentpost.post_catchphrase is defined %}{{ contentpost.post_catchphrase }}{% endif %}" required/>
+        <br/>
+            <label class="blogLabelMsg col-xs-12" for="content"><span class="glyphicon glyphicon-phone"></span> Votre texte*
+                <br/>
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </label>
+            <textarea class="blogArea" name="content" id="content" rows="7" cols="50" placeholder="7 char min & 776 max" minlength="7" maxlength="776" required>{% if contentpost.post_content is defined %}{{ contentpost.post_content }}{% endif %}</textarea>
+            
+            {# bbcode #}
+	           <div class="col-xs-12 bbcode">
+                   <span class="col-xs-3 btcode"  onClick="bbcode('[g]', '[/g]');return(false)"><p>Gras</p></span>
+                   <span class="col-xs-3 btcode"  onClick="bbcode('[i]', '[/i]');return(false)"><p>Italic</p></span>
+                   <span class="col-xs-3 btcode" onClick="bbcode('[s]', '[/s]');return(false)"><p>Souligné</p></span>
+                   <span class="col-xs-3 btcode" onClick="bbcode('[url]', '[/url]');return(false)"><p>Lien</p></span>
+                </div>
+        <br/>
+        <br/>
+        <br/>
+            <label class="blogLabel col-xs-12" for="author"><span class="glyphicon glyphicon-user"></span> Ecrit par* <span class="glyphicon glyphicon-menu-right"></span></label>
+            <input class="blogField" type="text" name="author" id="author" placeholder="2 char min & 30 max" minlength="2" maxlength="30" value="{% if contentpost.author_name is defined %}{{ contentpost.author_name }}{% endif %}{{ cookie.nickname }}" required/>
+        <br/>
+        <br/>
+            <input class="btn btn-default btn-xl sendForm" type="submit" value="Valider"/>  
+        </p>
+</form>

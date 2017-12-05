@@ -1,0 +1,44 @@
+{% extends "layout.twig" %}
+
+{% block navside %}
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Welcome to my network</a>
+            </div>
+    <!-- Collect the nav anchorlinks, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="{{ urls.home }}"><span class="glyphicon glyphicon-log-out"></span> Retour a l'accueil</a>
+                </li>
+                <li>
+                     <a class="page-scroll" href="{{ urls.blog }}"><span class="glyphicon glyphicon-log-in"></span> Lire mon BLog</a>
+                </li>
+            </ul>
+        </div>
+    <!-- /.navbar-collapse -->
+        </div>
+    <!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+
+{% block header %}
+ <div class="header-content">
+    <div class="header-content-inner">
+        <br/>
+        <div class="container-fluid">       
+                <div class="col-sm-offset-2   col-sm-8">
+                        <h1 id="homeHeading">ERREUR</h1>
+                        <hr>
+                        <p>Cette page n'existe pas</p>
+                        <a href="{{ urls.blog }}" class="btn btn-primary btn-xl page-scroll hidden-xs sendForm"><span class="glyphicon glyphicon-play"></span></a>
+                </div>
+        </div>
+     </div>
+</div>
+{% endblock %}

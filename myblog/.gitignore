@@ -1,0 +1,8 @@
+node_modules
+bower_components
+composer.phar
+vendor/composer
+vendor/symfony
+vendor/twig
+vendor/autoload.php
+.htaccess
